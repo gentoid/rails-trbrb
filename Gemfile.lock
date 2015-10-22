@@ -151,6 +151,8 @@ GEM
     trailblazer (1.0.3)
       reform (>= 1.2.0)
       uber (>= 0.0.15)
+    trailblazer-rails (0.1.5)
+      trailblazer (>= 1.0.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.15)
@@ -176,6 +178,7 @@ DEPENDENCIES
   spring
   sqlite3
   trailblazer
+  trailblazer-rails
   web-console (~> 2.0)
 
 BUNDLED WITH
