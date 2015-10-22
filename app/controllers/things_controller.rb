@@ -7,8 +7,11 @@ class ThingsController < ApplicationController
   end
 
   def create
-    run Thing::Create do |op|
-      return redirect_to op.model
+    @form = ThingForm.new Thing.new
+
+    if @form.validate params[:thing]
+      @form.save
+      return redirect_to @form.model
     end
 
     render action: :new
