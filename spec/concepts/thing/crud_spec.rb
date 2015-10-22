@@ -9,4 +9,13 @@ describe Thing::Create do
     expect(thing.name).to eq 'Rails'
     expect(thing.description).to eq 'Web dev'
   end
+
+  it 'fails validation' do
+    res, op = Thing::Create.run thing: { name: '' }
+
+    expect(res).to eq false
+    expect(op.model.persisted?).to eq false
+    expect(op.contract.errors.to_s).to eq '{:name=>["can\'t be blank"]}'
+  end
+
 end
