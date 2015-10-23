@@ -10,12 +10,19 @@ describe Thing::Create do
     expect(thing.description).to eq 'Web dev'
   end
 
-  it 'fails validation' do
+  it 'fails validation if length of name eql 0' do
     res, op = Thing::Create.run thing: { name: '' }
 
     expect(res).to eq false
     expect(op.model.persisted?).to eq false
     expect(op.contract.errors.to_s).to eq '{:name=>["can\'t be blank"]}'
+  end
+
+  it 'fails validation if length of description less than minimal value' do
+    res, op = Thing::Create.run thing: { name: 'Rails', description: 'hi' }
+
+    expect(res).to eq false
+    expect(op.contract.errors.to_s).to eq '{:description=>["is too short (minimum is 4 characters)"]}'
   end
 
 end
