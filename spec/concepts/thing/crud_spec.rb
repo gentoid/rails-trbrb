@@ -26,3 +26,15 @@ describe Thing::Create do
   end
 
 end
+
+describe Thing::Update do
+  let (:thing) { Thing::Create.(thing: { name: 'Rails', description: 'Web dev' }).model }
+
+  it 'ignores name while persist valid thing' do
+    Thing::Update.(id: thing.id, thing: { name: 'Lotus', description: 'Another dev' })
+
+    thing.reload
+    expect(thing.name).to eq 'Rails'
+    expect(thing.description).to eq 'Another dev'
+  end
+end
