@@ -18,4 +18,12 @@ class Thing < ActiveRecord::Base
     end
 
   end
+
+  class Update < Create
+    action :update
+
+    contract do
+      property :name, writeable: false
+    end
+  end
 end
