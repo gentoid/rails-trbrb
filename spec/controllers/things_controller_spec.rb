@@ -13,4 +13,16 @@ describe ThingsController do
       expect(response).to render_template :new
     end
   end
+
+  describe '#edit' do
+    render_views
+
+    let (:thing) { Thing::Create.(thing: { name: 'Rails', description: 'Web dev' }).model }
+
+    it 'shows name field as disabled', type: :request do
+      get "/things/#{thing.id}/edit", id: thing.id
+      expect(response).to render_template :new
+      expect(response.body).to include 'Name'
+    end
+  end
 end
