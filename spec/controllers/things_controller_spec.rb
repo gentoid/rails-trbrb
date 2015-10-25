@@ -2,6 +2,8 @@ require 'capybara/rspec'
 
 describe ThingsController do
   describe '#create' do
+    render_views
+
     it 'creates and redirects if thing valid' do
       post :create, thing: { name: 'All is ok' }
       
@@ -10,7 +12,7 @@ describe ThingsController do
 
     it 'renders "new" form again if thing invalid', type: :controller do
       post :create, thing: { name: '' }
-      expect(response).to render_template :new
+      expect(response.body).to have_selector '.error'
     end
   end
 
@@ -19,10 +21,10 @@ describe ThingsController do
 
     let (:thing) { Thing::Create.(thing: { name: 'Rails', description: 'Web dev' }).model }
 
-    it 'shows name field as disabled', type: :request do
-      get "/things/#{thing.id}/edit", id: thing.id
+    it 'shows name field as disabled' do
+      get :edit, id: thing.id
       expect(response).to render_template :new
-      expect(response.body).to include 'Name'
+      expect(response.body).to have_selector 'form #thing_name.readonly[value="Rails"]'
     end
   end
 end
