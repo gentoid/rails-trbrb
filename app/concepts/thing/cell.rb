@@ -19,4 +19,10 @@ class Thing::Cell < Cell::Concept
     timeago_tag super
   end
 
+  def classes
+    classes = %w( columns large-3 )
+    classes.push 'end' if options[:last] == model
+    classes
+  end
+
 end
