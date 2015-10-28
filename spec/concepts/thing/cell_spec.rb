@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'cells'
+require 'capybara/rspec'
 
 describe Thing::Cell, type: :cell do
   let (:rails) { Thing::Create.( thing: { name: 'Rails' } ).model }
@@ -9,7 +10,7 @@ describe Thing::Cell, type: :cell do
 
   controller HomeController
 
-  it 'renders things' do
+  it 'renders things', type: :feature do
     expect(subject).to have_selector '.columns'
   end
 end
