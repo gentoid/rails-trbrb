@@ -1,5 +1,3 @@
-require_relative '../concepts/thing/crud'
-
 class ThingsController < ApplicationController
 
   def new
