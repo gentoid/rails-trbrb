@@ -6,4 +6,8 @@ class CommentsController < ApplicationController
     form Comment::Create
   end
 
+  def create
+    run Comment::Create
+  end
+
 end
