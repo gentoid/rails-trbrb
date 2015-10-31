@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
     contract do
       property :body
-      property :weight
+      property :weight, prepopulator: lambda { |*| self.weight = '0' }
       property :thing
 
       def self.weights
