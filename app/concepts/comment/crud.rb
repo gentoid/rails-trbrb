@@ -8,8 +8,16 @@ class Comment < ActiveRecord::Base
       property :weight
       property :thing
 
+      def self.weights
+        { '0' => 'Nice!', '1' => 'Rubbish!' }
+      end
+
+      def weights
+        [ self.class.weights.to_a, :first, :last ]
+      end
+
       validates :body, length: { in: 6..160 }
-      validates :weight, inclusion: { in: %w(0 1) }
+      validates :weight, inclusion: { in: weights.keys }
       validates :thing, :user, presence: true
 
       property :user do
