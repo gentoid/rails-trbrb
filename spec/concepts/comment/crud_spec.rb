@@ -23,4 +23,12 @@ describe Comment::Create do
 
     expect(op.thing).to eq thing
   end
+
+  it 'invalid email' do
+    res, op = Comment::Create.run comment: { user: { email: '1337@' } }
+
+    expect(res).to eq false
+    expect(op.errors.messages[:'user.email']).to eq ['is invalid']
+  end
+
 end
