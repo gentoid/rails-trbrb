@@ -17,5 +17,10 @@ describe Comment::Create do
     expect(comment.persisted?).to eq true
     expect(comment.body).to eq 'Fantastic!'
     expect(comment.weight).to eq 1
+
+    expect(comment.user.persisted?).to eq true
+    expect(comment.user.email).to eq 'john@example.com'
+
+    expect(comment.thing).to eq thing
   end
 end
