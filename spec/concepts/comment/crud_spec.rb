@@ -21,6 +21,6 @@ describe Comment::Create do
     expect(comment.user.persisted?).to eq true
     expect(comment.user.email).to eq 'john@example.com'
 
-    expect(comment.thing).to eq thing
+    expect(op.thing).to eq thing
   end
 end
