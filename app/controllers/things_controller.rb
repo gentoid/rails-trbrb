@@ -20,6 +20,7 @@ class ThingsController < ApplicationController
 
   def show
     present Thing::Update
+    @thing = @model
   end
 
 end
