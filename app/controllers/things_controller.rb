@@ -24,4 +24,12 @@ class ThingsController < ApplicationController
     form Comment::Create
   end
 
+  def create_comment
+    present Thing::Update
+    @thing = @model
+    run Comment::Create
+
+    render :show
+  end
+
 end
