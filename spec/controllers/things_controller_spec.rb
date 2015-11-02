@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'capybara/rspec'
 
 describe ThingsController do
@@ -32,4 +33,14 @@ describe ThingsController do
       expect(response.body).not_to have_selector 'form #thing_name.readonly'
     end
   end
+
+  describe '#show' do
+    let (:thing) { Thing::Create.( thing: { name: 'Trailblazer' } ).model }
+
+    it 'shows things' do
+      get :show, id: thing.id
+      expect(response.body).to match /Trailblazer/
+    end
+  end
+
 end
